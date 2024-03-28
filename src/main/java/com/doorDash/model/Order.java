@@ -7,27 +7,36 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @ManyToOne
-    private  User customer;
+    private User customer;
+
     @JsonIgnore
     @ManyToOne
     private Restaurant restaurant;
+
     private Long totalAmount;
-    private  String orderStatus;
-    private Data createdAt;
+    private String orderStatus;
+    private Date createdAt;
+
     @ManyToOne
     private Address deliveryAddress;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
+
     private int totalItem;
     private int totalPrice;
 }
