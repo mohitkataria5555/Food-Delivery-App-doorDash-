@@ -32,9 +32,6 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
 
     public String getFullName() {
         return fullName;
@@ -62,10 +59,6 @@ public class User {
 
     public List<Address> getAddresses() {
         return addresses;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setFullName(String fullName) {
